@@ -1,0 +1,16 @@
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.csproj.AssemblyReference.cache
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.AssemblyInfoInputs.cache
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.AssemblyInfo.cs
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.csproj.CoreCompileInputs.cache
+/Users/marcushilario/Desktop/app/bin/Debug/net5.0/app.deps.json
+/Users/marcushilario/Desktop/app/bin/Debug/net5.0/app.runtimeconfig.json
+/Users/marcushilario/Desktop/app/bin/Debug/net5.0/app.runtimeconfig.dev.json
+/Users/marcushilario/Desktop/app/bin/Debug/net5.0/app.dll
+/Users/marcushilario/Desktop/app/bin/Debug/net5.0/app.pdb
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.dll
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/ref/app.dll
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.pdb
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/app.genruntimeconfig.cache
+/Users/marcushilario/Desktop/app/bin/Debug/net5.0/app
+/Users/marcushilario/Desktop/app/obj/Debug/net5.0/refint/app.dll
