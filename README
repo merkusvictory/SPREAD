@@ -1,0 +1,127 @@
+User Manual for the SPREAD Application
+Developed by: Sam Angtuaco, Marcus Hilario, Renz Lopez
+
+1) Introduction
+
+When the user first opens the application, they will be greeted by the Title Screen.
+
+The user will then press any button on their keyboard to move to the next screen as requested by the program.
+
+After pressing any button, the program will switch to the Login Page which is seen below.
+
+The user will then type in their username, which in this case is “PersonInRecovery”. After the user types in their username and presses enter, the program will then ask for their password. The user will then type in their password which in this case is “SPREAD”. After pressing enter, the user will see the screen change into the Main Menu page.
+
+2) Main Menu
+
+Once the user has logged in, they will be taken to the main menu.
+
+On the Main Menu page, the user will see all the available features of the program. This includes the following:
+
+[1] Diagnosis
+[2] Meal Randomizer
+[3] Meal Plan
+[4] Journal
+[5] Consistency Tracker
+[6] Productivity Tracker
+[7] User Profile
+
+After reading through the choices, the user will then type in the number of the feature they would like to use and press enter. After pressing enter, the user will see the screen change from the Main Menu page to the page of their chosen feature.
+
+3) Diagnosis
+
+The first feature of the application is Diagnosis.
+
+A brief introduction to the Diagnosis feature will be displayed, after which the user should press any button to proceed to the next step.
+
+A series of symptoms will be displayed one-by-one by the program. For each symptom, the user must input either ‘Y’ to indicate that the symptom applies to them, or ‘N’ to indicate that it does not. Afterwards, the user must hit enter to confirm their response. Inputting any other value will signify that it does not apply to the user.
+
+After the user has responded to all 23 symptoms, the program will then display the results of the unofficial diagnosis. It will give the percentage of symptoms matched for each eating disorder. In red text, the program will tell the user which eating disorder they likely have, as well as the likelihood that they actually have it. The user must press any key to proceed to the next screen.
+
+Based on the results, the user will be redirected to more information regarding the eating disorder they most likely have. Pressing any key will bring the user back to the Main Menu page.
+
+4) Meal Randomizer
+
+The second feature of the application is the Meal Randomizer.
+
+The user will first see a short description of the feature and a list of eating disorders. The user will then type the number that corresponds to their disorder and press enter.
+
+They are then presented with two options:
+The first is the option to be able to add a custom meal to the already existing pool of meals
+The second is the option to receive a meal from said pool of meals based on the eating disorder that the user have
+
+The user will then type in the number that corresponds to their choice. If the user types and enters “1”, the screen will then change into a new page.
+
+The user is then tasked to type in a meal they would like to add to the program's food bank. Once the user has finished adding a meal, they must press enter to continue. They are then asked to press any key on their keyboard. After pressing a button, they are taken back to the main menu
+
+If the user chooses the second option, they will be taken to this page of the application
+
+The user is tasked to press any button on their keyboard to receive their random meal suggestion. Once it has given the user the meal, the user can again press any button and then they will be brought back to the Main Menu page.
+
+5) Meal Plan
+
+The third feature of our application is the Meal Plan. This will provide the user with an appropriate meal plan based on the eating disorder that they have.
+
+The user will first see a short description of the feature, and a list of eating disorders. The user will then type in the number that corresponds to their disorder and press enter.
+
+The screen will then change, and the program will then ask the user to input a number from 1-7. This is just because there are 7 choices. Once the user types in the number of their choice and presses enter, the screen will display a meal plan for the day.
+
+Once the meal plan is shown, the user will then press any button. After pressing a button, the screen will then clear and show the Main Menu page again.
+
+6) Journal
+
+The fourth feature of application is the Journal.
+
+A brief introduction to the Journal feature will be displayed to the user. Next, a list of all ten pages of the journal will appear. The user may input which page they want to interact with by typing the corresponding number and pressing enter.
+
+The user will then be able to view what is currently stored in the Journal page they chose to view. 
+
+From there, the user is presented with two options. The user must type the number that corresponds with their choice and hit enter.
+Edit the Journal page they are currently viewing
+Go back to the introductory page of the Journal
+
+If the user chooses the first option, they can type whatever they want to be stored in the Journal. Afterwards, they should press enter to signify that they are done typing. They will then be redirected to the introductory page of the Journal feature. To go back to the main menu, the user must type the number 11 and press enter.
+
+7) Consistency Tracker
+
+The fifth feature of the program is the Consistency Tracker.
+
+The user will be greeted by an introductory page to the Consistency Tracker. The number of days that they have been using SPREAD as well as their current SPREAD streak will be displayed.
+
+From here, they will be presented with two options. The user must type the number that corresponds with their choice and hit enter.
+Update the daily consistency tracker
+Go back to the Main menu
+
+Choosing the second option will redirect the user back to the Main Menu.
+
+If the user chooses the first option, they will be asked whether or not they relapsed that day. The user must type either ‘Y’ to indicate that they have relapsed or ‘N’ to indicate that they have not. Afterwards, the user must hit enter to confirm their response. Inputting any other value will be interpreted as the user relapsing.
+
+If the user relapsed, a condolence message will be displayed by the program, as well as a list of hotlines they may contact for support. Pressing any button will redirect the user to the introductory page of the consistency tracker.
+
+If the user did not relapse, a congratulatory message will be displayed by the program. Pressing any button will redirect the user to the introductory page of the consistency tracker.
+
+8) Productivity Tracker
+
+The sixth feature of our application is the Productivity Tracker
+
+The user will be greeted with this page that informs them that if they are able to complete a goal that they set for themselves, then they will be able to grow a digital plant.
+
+They first have to input 10 goals that they wish to achieve during their recovery journey. They will need to type this manually and press enter after each goal typed. After this the program will ask what goal they have accomplished. The user will then type the number that corresponds to the accomplished goal. After pressing enter, the program will show an image of a plant in different stages of growth depending on the amount of accomplished goals.
+
+If the user wants to go back to the Main Menu page, they must type 0 and press enter.
+
+9) User Profile
+
+The seventh feature of our application is the User Profile
+
+This simply shows the user’s information that is currently stored in the application.
+
+It shows their name, diagnosed eating disorder, how long they have been using SPREAD, their consistency streak, how many goals they have completed, and their plant’s progress
+
+Once the user is finished looking at their profile, they are able to go back to the main menu by typing any button and pressing enter.
+
+10) Exit
+
+Once the user is finished using the SPREAD, they are able to log out and exit the application and are greeted with this page.
+
+
+

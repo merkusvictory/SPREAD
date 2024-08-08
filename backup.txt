@@ -1,0 +1,1390 @@
+using System;
+using System.Threading;
+using System.Collections.Generic;
+
+class Program
+{
+    static List<string> mealsA = new List<string> { "meal 1A", "meal 2A", "meal 3A" };
+    static List<string> mealsB = new List<string> { "meal 1B", "meal 2B", "meal 3B" };
+    static List<string> mealsC = new List<string> { "meal 1C", "meal 2C", "meal 3C" };
+
+    static string GenerateMealA()
+    {
+      //Meal Randomizer Anorexia
+        var rand = new Random();
+        string randomMeal = mealsA[rand.Next(mealsA.Count)];
+        return randomMeal;
+    }
+    static string GenerateMealB()
+    {
+      //Meal Randomizer Bulimia
+        var rand = new Random();
+        string randomMeal = mealsB[rand.Next(mealsB.Count)];
+        return randomMeal;
+    }
+    static string GenerateMealC()
+    {
+      //Meal Randomizer Binge Eating
+        var rand = new Random();
+        string randomMeal = mealsC[rand.Next(mealsC.Count)];
+        return randomMeal;
+    }
+
+    public static void Typewriter(string message)
+    {
+        for (int x = 0; x < message.Length; x++)
+        {
+            Console.Write(message[x]);
+            Thread.Sleep(60);
+        }
+        Console.WriteLine("");
+    }
+
+    public static void Main(string[] args)
+    {
+
+        //Diagnosis Variables
+        float countAnorexia, countBulimia, countBingeEating, percentAnorexia, percentBulimia, percentBingeEating, percentDiagnosis;
+        string diagnosis, response, chance;
+        int choice = 0;
+
+        //Login Variables
+        string username, password;
+        string usernameCorrect = "PersonInRecovery";
+        string passwordCorrect = "SPREAD";
+
+        //Randomizer Variables
+        int choiceED1;
+        int choicerandomA;
+        string randommealinputA;
+        int choicerandomA2;
+        int choicerandomA3;
+        int choicerandomB;
+        string randommealinputB;
+        int choicerandomB2;
+        int choicerandomB3;
+        int choicerandomC;
+        string randommealinputC;
+        int choicerandomC2;
+        int choicerandomC3;
+
+        //Meal Plan Variables
+        int choiceED2;
+        int MPAchoice;
+        int MPBchoice;
+        int MPCchoice;
+
+        //Journal Variables
+        int pageNumber, pageEdit;
+        string page1 = "...";
+        string page2 = "...";
+        string page3 = "...";
+        string page4 = "...";
+        string page5 = "...";
+        string page6 = "...";
+        string page7 = "...";
+        string page8 = "...";
+        string page9 = "...";
+        string page10 = "...";
+
+        //Consistency Tracker Variables
+        int SPREADstreak = 0;
+        int dayCounter = 1;
+        int consistencyChoice;
+        string relapse;
+
+        //Productivity Tracker Variables
+        string goal1 = "", goal2 = "", goal3 = "", goal4 = "", goal5 = "", goal6 =
+          "", goal7 = "", goal8 = "", goal9 = "", goal10 = "";
+        string goal1status = "In Progress";
+        string goal2status = "In Progress";
+        string goal3status = "In Progress";
+        string goal4status = "In Progress";
+        string goal5status = "In Progress";
+        string goal6status = "In Progress";
+        string goal7status = "In Progress";
+        string goal8status = "In Progress";
+        string goal9status = "In Progress";
+        string goal10status = "In Progress";
+        bool initialGoal = true;
+        int counterPlant = 0;
+        int goal;
+        string currentPlant = System.IO.File.ReadAllText(@"ascii/currentplant");
+        string plant0 = System.IO.File.ReadAllText(@"ascii/plant0");
+        string plant1 = @"ascii/plant1";
+        string plant2 = @"ascii/plant2";
+        string plant3 = @"ascii/plant3";
+        string plant4 = @"ascii/plant4";
+        string plant5 = @"ascii/plant5";
+        string plant6 = @"ascii/plant6";
+        string plant7 = @"ascii/plant7";
+        string plant8 = @"ascii/plant8";
+        string plant9 = @"ascii/plant9";
+        string plant10 = @"ascii/plant10";
+
+        // Title Screen
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(@"                 
+                          ⣠⡶⠛⠉⠉⢹⡆ 
+                 ⣀       ⢰⡏⢀⡴  ⣾⠁ 
+              ⠰⣟⠋⠉⠙⠛⢶⣄  ⢸⣷⠟⠁⣀⡼⠋  
+               ⢻⡄ ⠰⢦⣄⣹⡆  ⣼⠿⠛⠛⠉    
+                ⠻⢦⣄⣀⣈⣻⣿⡀⢰⡏     ⣀  
+                  ⠈⠉⠉⠉⠈⠻⣼⡇ ⢀⡴⠛⠋⠉⢙⡿
+                        ⢹⡇⢀⣾⣥⠾⠃⢀⣼⠃
+                  ⣤⣤⣤⣤⣀ ⢸⣇⣼⠿⠷⠶⠶⠛⠁ 
+                  ⢻⡄ ⣤⣹⣧⢸⡿⠁       
+                   ⠛⢶⣤⣽⣿⣿⡇        
+                        ⢹⡇        
+                      ⢀⣠⡼⢧⣄⡀      
+                 ⣀⣀⣤⣾⣋⣁⣀⣀⣈⣙⣷⣤⣀⣀  
+                 ⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉ 
+       ____  ____  ____  _____    _    ____  
+      / ___||  _ \|  _ \| ____|  / \  |  _ \ 
+      \___ \| |_) | |_) |  _|   / _ \ | | | |
+       ___) |  __/|  _ <| |___ / ___ \| |_| |
+      |____/|_|   |_| \_\_____/_/   \_\____/ ");
+        Console.WriteLine("");
+        Console.ForegroundColor = ConsoleColor.White;
+
+        Typewriter("Welcome to SPREAD! Your eating disorder recovery companion!");
+        Console.WriteLine("");
+        Typewriter("SPREAD stands for Supporting, Planning, Recovering from Eating Disorders");
+        Typewriter("We aim to provide you comfort and support during your recovery journey!");
+        Console.ReadKey();
+        Console.Clear();
+
+        int LN = 0;
+        while (LN <= 3)
+        {
+            // Login Screen
+            Console.WriteLine("Login Page");
+            Console.WriteLine("");
+            Console.Write("Please enter your username: ");
+            username = Console.ReadLine();
+            Console.Write("Please enter your password: ");
+            password = Console.ReadLine();
+            if (username == usernameCorrect && password == passwordCorrect)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Typewriter("Welcome to SPREAD, PersonInRecovery!");
+                Console.WriteLine("");
+                LN = 5;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Username or Password. Please try again. You have "+(3-LN)+" more attempts");
+                LN++;
+                Thread.Sleep(2000);
+                Console.Clear();
+            }
+        }
+        if (LN == 4)
+            Console.WriteLine("You have reached the maximum number of attempts. Please try again later.");
+        Thread.Sleep(2000);
+
+        while (LN == 5)
+        {
+            if (choice == 0)
+            {
+                //Main Menu
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(@"What would you like to do today? Choose the number of your choice!
+
+        [1] Get an Unofficial Diagnosis 
+        [2] Meal Randomizer
+        [3] Get Your Meal Plan for the Week
+        [4] Journaling
+        [5] Consistency Tracker
+        [6] Productivity Tracker
+        [7] Exit
+        
+        Action: ");
+
+                choice = int.Parse(Console.ReadLine());
+                Console.Clear();
+            }
+
+            else if (choice == 1)
+            {
+                //Diagnosis
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Typewriter("You have chosen to get diagnosed! You will be given some criteria so that you can discern which disorder you have.");
+                Console.ReadKey();
+                Console.Clear();
+
+                countAnorexia = 0;
+                countBulimia = 0;
+                countBingeEating = 0;
+
+                Typewriter("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+
+                Typewriter("Symptom 1 of 23");
+                Typewriter("Alcohol and Drug Use");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBulimia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 2 of 23");
+                Typewriter("Anxiety and Depression");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; countBulimia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 3 of 23");
+                Typewriter("Dangerous amounts of exercising or fasting");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia += 2; countBulimia += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 4 of 23");
+                Typewriter("Dehydration");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 5 of 23");
+                Typewriter("Denial of Hunger");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 6 of 23");
+                Typewriter("Eating exorbitant amounts of food in a short amount of time");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBulimia += 2; countBingeEating += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 7 of 23");
+                Typewriter("Eating even when you are full and not hungry");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBingeEating += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 8 of 23");
+                Typewriter("Eating to the point of discomfort");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBingeEating += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 9 of 23");
+                Typewriter("Eating in secret to avoid embarrassment");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBulimia += 2; countBingeEating += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 10 of 23");
+                Typewriter("Extreme thinness");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 11 of 23");
+                Typewriter("Extreme stomach pain and constipation");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 12 of 23");
+                Typewriter("Fear of becoming fat or gaining weight");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia += 2; countBulimia += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 13 of 23");
+                Typewriter("Fear regarding not being able to stop eating");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBulimia += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 14 of 23");
+                Typewriter("Feeling shame about eating");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBingeEating++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 15 of 23");
+                Typewriter("Hiding and hoarding food for later");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBingeEating++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 16 of 23");
+                Typewriter("Increased irritability");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 17 of 23");
+                Typewriter("Lethargy");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; countBulimia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 18 of 23");
+                Typewriter("Low self-esteem or feeling of hopelessness");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBulimia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 19 of 23");
+                Typewriter("Obsessive with food preparations such as calorie counting");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 20 of 23");
+                Typewriter("Persistent pursuit for thinness regardless of what is considered healthy");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia += 2; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 21 of 23");
+                Typewriter("Social and emotional withdrawal");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 22 of 23");
+                Typewriter("Tiredness and decreased energy");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countBulimia++; }
+
+                Console.Clear();
+                Console.WriteLine("If you find that the symptom displayed relates to you, type Y. If not, type N.");
+                Console.WriteLine("");
+                Console.WriteLine("Symptom 23 of 23");
+                Typewriter("Unusual eating habits");
+                response = Console.ReadLine();
+                if (response == "Y" || response == "y")
+                { countAnorexia++; countBulimia++; countBingeEating++; }
+
+                percentAnorexia = (countAnorexia / 18) * 100;
+                percentBulimia = (countBulimia / 15) * 100;
+                percentBingeEating = (countBingeEating / 11) * 100;
+
+                if (percentAnorexia > percentBulimia)
+                {
+                    if (percentAnorexia > percentBingeEating)
+                    { diagnosis = "Anorexia nervosa"; percentDiagnosis = percentAnorexia; }
+                    else
+                    { diagnosis = "Binge-eating disorder"; percentDiagnosis = percentBingeEating; }
+                }
+                else
+                {
+                    if (percentBulimia > percentBingeEating)
+                    { diagnosis = "Bulimia nervosa"; percentDiagnosis = percentBulimia; }
+                    else
+                    { diagnosis = "Binge-eating disorder"; percentDiagnosis = percentBingeEating; }
+                }
+
+                if (percentDiagnosis < 30)
+                { chance = "LOW"; }
+                else if (percentDiagnosis < 70)
+                { chance = "MODERATE"; }
+                else
+                { chance = "HIGH"; }
+
+                Console.Clear();
+                Typewriter("Diagnosis Results:");
+                Console.WriteLine("");
+                Typewriter("Anorexia nervosa: " + percentAnorexia + "% of symptoms matched");
+                Typewriter("Bulimia nervosa: " + percentBulimia + "% of symptoms matched");
+                Typewriter("Binge-eating: " + percentBingeEating + "% of symptoms matched");
+                Console.WriteLine("");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Typewriter("You are most likely to have: " + diagnosis);
+                Typewriter("Your chance of having this disorder is " + chance);
+                Thread.Sleep(5000);
+                Console.Clear();
+
+                choice = 0;
+            }
+
+            else if (choice == 2)
+            {
+                //RANDOMIZER
+
+                Console.WriteLine("You have chosen MEAL RANDOMIZER! In this feature you test your ability to overcome the fear of eating and/or find a random healthy meal to try.");
+                Console.WriteLine("To begin, choose the disorder you currently have..." + "\n" + "[1] Anorexia" + "\n" + "[2] Bulimia" + "\n" + "[3] Binge Eating");
+
+                choiceED1 = int.Parse(Console.ReadLine());
+                if (choiceED1 == 1)
+                {
+                    Console.WriteLine("You have chosen to obtain an Anorexia meal plan!");
+                    Console.WriteLine("Would you like to: [1] add a custom meal to the randomizer or [2] skip to getting a meal?");
+
+                    choicerandomA = int.Parse(Console.ReadLine());
+                    while (choicerandomA == 1 || choicerandomA == 2)
+                    {
+                        if (choicerandomA == 1)
+                        {
+                            Console.WriteLine("You have chosen to add a meal! This is to encourage you to overcome your fear foods! Please enter the name of the meal you would like to add to the Randomizer List: ");
+
+                            randommealinputA = Console.ReadLine();
+                            mealsA.Add(randommealinputA);
+                        }
+                        if (choicerandomA == 1 || choicerandomA == 2)
+                        {
+                            Console.WriteLine(@"Please select your next action 
+                                [1] Add another meal to the randomizer
+                                [2] Get your randomly generated meal");
+                            choicerandomA2 = int.Parse(Console.ReadLine());
+                            if (choicerandomA2 == 1)
+                                choicerandomA = 1;
+                            else if (choicerandomA2 == 2)
+                            {
+                                Console.WriteLine("You have chosen to be given a random meal! Please press the number 1 to get your meal!");
+                                choicerandomA3 = int.Parse(Console.ReadLine());
+                                if (choicerandomA3 == 1)
+                                {
+                                    Console.WriteLine(GenerateMealA());
+                                    Thread.Sleep(5000);
+                                    choice = 0;
+
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (choiceED1 == 2)
+                {
+
+                    Console.WriteLine("Would you like to: [1] continue to add a meal or [2] skip to getting a meal?");
+                    choicerandomB = int.Parse(Console.ReadLine());
+                    while (choicerandomB == 1 || choicerandomB == 2)
+                    {
+                        if (choicerandomB == 1)
+                        {
+                            Console.WriteLine("You have chosen to add a meal! This is to encourage you to overcome your fear foods! Please enter the name of the meal you would like to add to the Randomizer List: ");
+
+                            randommealinputB = Console.ReadLine();
+                            mealsB.Add(randommealinputB);
+                        }
+                        if (choicerandomB == 1 || choicerandomB == 2)
+                        {
+                            Console.WriteLine(@"Please select your next action 
+                    [1] Add another meal to the randomizer
+                    [2] Get your randomly generated meal");
+                            choicerandomB2 = int.Parse(Console.ReadLine());
+                            if (choicerandomB2 == 1)
+                                choicerandomB = 1;
+                            else if (choicerandomB2 == 2)
+                            {
+                                Console.WriteLine("You have chosen to be given a random meal! Please press the number 1 to get your meal!");
+                                choicerandomB3 = int.Parse(Console.ReadLine());
+                                if (choicerandomB3 == 1)
+                                {
+                                    Console.WriteLine(GenerateMealB());
+                                    Thread.Sleep(5000);
+                                    choice = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (choiceED1 == 3)
+                {
+
+                    Console.WriteLine("Would you like to: [1] continue to add a meal or [2] skip to getting a meal?");
+                    choicerandomC = int.Parse(Console.ReadLine());
+                    while (choicerandomC == 1 || choicerandomC == 2)
+                    {
+                        if (choicerandomC == 1)
+                        {
+                            Console.WriteLine("You have chosen to add a meal! This is to encourage you to overcome your fear foods! Please enter the name of the meal you would like to add to the Randomizer List: ");
+
+                            randommealinputC = Console.ReadLine();
+                            mealsC.Add(randommealinputC);
+                        }
+                        if (choicerandomC == 1 || choicerandomC == 2)
+                        {
+                            Console.WriteLine(@"Please select your next action 
+                    [1] Add another meal to the randomizer
+                    [2] Get your randomly generated meal");
+                            choicerandomC2 = int.Parse(Console.ReadLine());
+                            if (choicerandomC2 == 1)
+                                choicerandomC = 1;
+                            else if (choicerandomC2 == 2)
+                            {
+                                Console.WriteLine("You have chosen to be given a random meal! Please press the number 1 to get your meal!");
+                                choicerandomC3 = int.Parse(Console.ReadLine());
+                                if (choicerandomC3 == 1)
+                                {
+                                    Console.WriteLine(GenerateMealC());
+                                    Thread.Sleep(5000);
+                                    choice = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            else if (choice == 3)
+            {    //MEAL PLAN
+
+                Console.WriteLine("You have chosen MEAL PLAN! This feature gives you a pre-planned meal plan for the week!");
+                Console.WriteLine(@"To begin, please input the disorder that you are currently suffering from. Type:
+          [1] Anorexia
+          [2] Bulimia
+          [3] Binge Eating");
+
+                choiceED2 = int.Parse(Console.ReadLine());
+
+                if (choiceED2 == 1)
+                {
+                    Console.Write("Choose a random number from 1-7 and type it: ");
+                    MPAchoice = int.Parse(Console.ReadLine());
+
+                    if (MPAchoice == 1)
+                    {
+                        Console.WriteLine(@"
+                bfast1: 
+                lunch1:
+                dinner1:
+                ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPAchoice == 2)
+                    {
+                        Console.WriteLine(@"
+              bfast2: 
+              lunch2:
+              dinner2:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPAchoice == 3)
+                    {
+                        Console.WriteLine(@"
+              bfast3: 
+              lunch3:
+              dinner3:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPAchoice == 4)
+                    {
+                        Console.WriteLine(@"
+              bfast4: 
+              lunch4:
+              dinner4:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPAchoice == 5)
+                    {
+                        Console.WriteLine(@"
+              bfast5: 
+              lunch5:
+              dinner5:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPAchoice == 6)
+                    {
+                        Console.WriteLine(@"
+              bfast6: 
+              lunch6:
+              dinner6:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPAchoice == 7)
+                    {
+                        Console.WriteLine(@"
+              bfast7: 
+              lunch7:
+              dinner7:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                }
+                else if (choiceED2 == 2)
+                {
+                    Console.Write("Choose a random number from 1-7 and type it: ");
+                    MPBchoice = int.Parse(Console.ReadLine());
+
+                    if (MPBchoice == 1)
+                    {
+                        Console.WriteLine(@"
+              bfast1: 
+              lunch1:
+              dinner1:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPBchoice == 2)
+                    {
+                        Console.WriteLine(@"
+            bfast2: 
+            lunch2:
+            dinner2:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPBchoice == 3)
+                    {
+                        Console.WriteLine(@"
+            bfast3: 
+            lunch3:
+            dinner3:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPBchoice == 4)
+                    {
+                        Console.WriteLine(@"
+            bfast4: 
+            lunch4:
+            dinner4:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPBchoice == 5)
+                    {
+                        Console.WriteLine(@"
+            bfast5: 
+            lunch5:
+            dinner5:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPBchoice == 6)
+                    {
+                        Console.WriteLine(@"
+            bfast6: 
+            lunch6:
+            dinner6:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPBchoice == 7)
+                    {
+                        Console.WriteLine(@"
+            bfast7: 
+            lunch7:
+            dinner7:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                }
+                else if (choiceED2 == 3)
+                {
+                    Console.Write("Choose a random number from 1-7 and type it: ");
+                    MPCchoice = int.Parse(Console.ReadLine());
+
+                    if (MPCchoice == 1)
+                    {
+                        Console.WriteLine(@"
+              bfast1: 
+              lunch1:
+              dinner1:
+              ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPCchoice == 2)
+                    {
+                        Console.WriteLine(@"
+            bfast2: 
+            lunch2:
+            dinner2:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPCchoice == 3)
+                    {
+                        Console.WriteLine(@"
+            bfast3: 
+            lunch3:
+            dinner3:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPCchoice == 4)
+                    {
+                        Console.WriteLine(@"
+            bfast4: 
+            lunch4:
+            dinner4:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPCchoice == 5)
+                    {
+                        Console.WriteLine(@"
+            bfast5: 
+            lunch5:
+            dinner5:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPCchoice == 6)
+                    {
+                        Console.WriteLine(@"
+            bfast6: 
+            lunch6:
+            dinner6:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                    else if (MPCchoice == 7)
+                    {
+                        Console.WriteLine(@"
+            bfast7: 
+            lunch7:
+            dinner7:
+            ");
+                        Thread.Sleep(5000);
+                        choice = 0;
+                    }
+                }
+            }
+
+            else if (choice == 4)
+            {
+                //Journal
+                Console.WriteLine("Welcome to the SPREAD Journal");
+                Console.WriteLine("Feel free to log your thoughts, messages to your future self, or anything else you want to express.");
+
+                Console.WriteLine("");
+                Console.WriteLine("Which page of the journal do you want to view?");
+
+                Console.Write(@"
+[1] Page 1
+[2] Page 2
+[3] Page 3
+[4] Page 4
+[5] Page 5
+[6] Page 6
+[7] Page 7
+[8] Page 8
+[9] Page 9
+[10] Page 10
+
+Page Number: ");
+
+                pageNumber = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                if (pageNumber == 1)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 1");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page1);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+[1] Yes
+[2] Go Back!
+
+Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 1");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page1 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 2)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 2");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page2);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+[1] Yes
+[2] Go Back!
+
+Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 2");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page2 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 3)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 3");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page3);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+[1] Yes
+[2] Go Back!
+
+Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 3");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page3 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 4)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 4");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page4);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+[1] Yes
+[2] Go Back!
+
+Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 4");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page4 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 5)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 5");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page5);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+[1] Yes
+[2] Go Back!
+
+Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 5");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page5 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 6)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 6");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page6);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+[1] Yes
+[2] Go Back!
+
+Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 6");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page6 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 7)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 7");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page7);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+            [1] Yes
+            [2] Go Back!
+
+            Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 7");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page7 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 8)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 8");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page8);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+            [1] Yes
+            [2] Go Back!
+
+            Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 8");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page8 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 9)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 9");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page9);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+            [1] Yes
+            [2] Go Back!
+
+            Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 9");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page9 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+
+                else if (pageNumber == 10)
+                {
+                    Console.WriteLine("SPREAD Journal");
+                    Console.WriteLine("Page 10");
+                    Console.WriteLine("");
+                    Console.WriteLine("Dear Journal,");
+                    Console.WriteLine(page10);
+
+                    Console.WriteLine("");
+                    Console.Write(@"Do you want to edit this journal page?
+            [1] Yes
+            [2] Go Back!
+
+            Action: ");
+
+                    pageEdit = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (pageEdit == 1)
+                    {
+                        Console.WriteLine("SPREAD Journal");
+                        Console.WriteLine("Page 10");
+                        Console.WriteLine("*press ENTER when done*");
+                        Console.WriteLine("");
+                        Console.WriteLine("Dear Journal,");
+                        page10 = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+                }
+            }
+
+            else if (choice == 5)
+            {
+                //Consistency Tracker
+                Console.WriteLine("Welcome to the Consistency Tracker");
+                Console.WriteLine("This will track how many days you have gone without relapsing, aka your SPREAD Streak.");
+                Console.WriteLine("This is day " + dayCounter + " of you using the SPREAD app!");
+                Console.WriteLine("");
+                Console.WriteLine("SPREAD Streak: " + SPREADstreak + " days");
+                Console.WriteLine("");
+                Console.Write(@"What would you like to do?
+[1] Update the daily consistency tracker
+[2] Go Back
+
+Action: ");
+
+                consistencyChoice = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                if (consistencyChoice == 1)
+                {
+                    Console.WriteLine("Day " + dayCounter);
+                    Console.WriteLine("Did you relapse? Type Y if Yes and N if No");
+                    dayCounter++;
+                    relapse = Console.ReadLine();
+
+                    if (relapse == "N")
+                    {
+                        SPREADstreak++;
+                        Console.WriteLine("Good job! Another step towards recovery!");
+                        Thread.Sleep(3000);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        SPREADstreak = 0;
+                        Console.WriteLine(@"We're sorry to hear that you've relapsed.
+              Here are some hotlines to seek professional help.");
+                        Thread.Sleep(10000);
+                        Console.Clear();
+                    }
+                }
+                else
+                {
+                    choice = 0;
+                }
+            }
+
+            else if (choice == 6)
+            {
+                // Productivity Tracker
+                if (counterPlant == 0)
+                { currentPlant = plant0; }
+                else if (counterPlant == 1)
+                { currentPlant = plant1; }
+                else if (counterPlant == 2)
+                { currentPlant = plant2; }
+                else if (counterPlant == 3)
+                { currentPlant = plant3; }
+                else if (counterPlant == 4)
+                { currentPlant = plant4; }
+                else if (counterPlant == 5)
+                { currentPlant = plant5; }
+                else if (counterPlant == 6)
+                { currentPlant = plant6; }
+                else if (counterPlant == 7)
+                { currentPlant = plant7; }
+                else if (counterPlant == 8)
+                { currentPlant = plant8; }
+                else if (counterPlant == 9)
+                { currentPlant = plant9; }
+                else if (counterPlant == 10)
+                { currentPlant = plant10; }
+
+                if (initialGoal == true)
+                {
+                    Console.WriteLine("Welcome to the Progress Tracker!");
+                    Console.WriteLine("Input 10 goals you wish to achieve for yourself. With each goal completed, you will grow a digital plant.");
+                    Console.WriteLine("");
+                    Console.WriteLine("First, input 10 goals you have:");
+                    Console.Write("Goal 1: ");
+                    goal1 = Console.ReadLine();
+                    Console.Write("Goal 2: ");
+                    goal2 = Console.ReadLine();
+                    Console.Write("Goal 3: ");
+                    goal3 = Console.ReadLine();
+                    Console.Write("Goal 4: ");
+                    goal4 = Console.ReadLine();
+                    Console.Write("Goal 5: ");
+                    goal5 = Console.ReadLine();
+                    Console.Write("Goal 6: ");
+                    goal6 = Console.ReadLine();
+                    Console.Write("Goal 7: ");
+                    goal7 = Console.ReadLine();
+                    Console.Write("Goal 8: ");
+                    goal8 = Console.ReadLine();
+                    Console.Write("Goal 9: ");
+                    goal9 = Console.ReadLine();
+                    Console.Write("Goal 10: ");
+                    goal10 = Console.ReadLine();
+                    initialGoal = false;
+                    Console.Clear();
+                }
+
+                if (initialGoal == false)
+                {
+                    Console.WriteLine("Welcome to the Progress Tracker!");
+                    Console.WriteLine("With each goal of your 10 goals completed, you will little by little grow a digital plant.");
+                    Console.WriteLine("");
+                    Console.WriteLine(currentPlant);
+                    Console.WriteLine("");
+                    Console.WriteLine("[1] " + goal1 + " [" + goal1status + "]");
+                    Console.WriteLine("[2] " + goal2 + " [" + goal2status + "]");
+                    Console.WriteLine("[3] " + goal3 + " [" + goal3status + "]");
+                    Console.WriteLine("[4] " + goal4 + " [" + goal4status + "]");
+                    Console.WriteLine("[5] " + goal5 + " [" + goal5status + "]");
+                    Console.WriteLine("[6] " + goal6 + " [" + goal6status + "]");
+                    Console.WriteLine("[7] " + goal7 + " [" + goal7status + "]");
+                    Console.WriteLine("[8] " + goal8 + " [" + goal8status + "]");
+                    Console.WriteLine("[9] " + goal9 + " [" + goal9status + "]");
+                    Console.WriteLine("[10] " + goal10 + " [" + goal10status + "]");
+                    Console.WriteLine("");
+                    Console.Write("Type the number of a goal you completed, type 0 to go back: ");
+                    goal = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    if (goal == 0)
+                    {
+                        choice = 0;
+                    }
+                    else if (goal == 1 && goal1status == "In Progress")
+                    {
+                        goal1status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 2 && goal2status == "In Progress")
+                    {
+                        goal2status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 3 && goal3status == "In Progress")
+                    {
+                        goal3status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 4 && goal4status == "In Progress")
+                    {
+                        goal4status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 5 && goal5status == "In Progress")
+                    {
+                        goal5status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 6 && goal6status == "In Progress")
+                    {
+                        goal6status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 7 && goal7status == "In Progress")
+                    {
+                        goal7status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 8 && goal8status == "In Progress")
+                    {
+                        goal8status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 9 && goal9status == "In Progress")
+                    {
+                        goal9status = "Done";
+                        counterPlant++;
+                    }
+                    else if (goal == 10 && goal10status == "In Progress")
+                    {
+                        goal10status = "Done";
+                        counterPlant++;
+                    }
+                    else
+                    { }
+                }
+            }
+
+            else if (choice == 7)
+            {
+                Console.Clear();
+                Console.WriteLine("You have successfully logged out of SPREAD. Thank you for using our service!");
+                LN = 6;
+            }
+        }
+    }
+}
